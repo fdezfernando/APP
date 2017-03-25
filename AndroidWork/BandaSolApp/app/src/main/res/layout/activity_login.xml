@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#010135"
     tools:context="com.fernandoj.bandasolapp.LoginActivity">
 
     <RelativeLayout
@@ -14,25 +15,46 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
+
+        <ImageView
+            android:id="@+id/image_view_logo"
+            android:layout_width="800px"
+            android:layout_height="400px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="450px"
+            android:src="@drawable/logobandasol" />
+
         <EditText
             android:id="@+id/edit_text_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300px"/>
+            android:layout_below="@id/image_view_logo"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:backgroundTint="#c2c2c2"
+            android:hint="Usuario"
+            android:textColor="#f2f2f2"
+            android:textColorHint="#c2c2c2" />
 
         <EditText
             android:id="@+id/edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_text_username"
-            android:layout_marginTop="10px"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:backgroundTint="#c2c2c2"
+            android:hint="Contraseña"
+            android:textColor="#f2f2f2"
+            android:textColorHint="#c2c2c2"/>
+
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_text_password"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/entrar"
-            android:layout_marginTop="10px"/>
+            android:textColor="#f2f2f2"
+            android:background="@drawable/button_style"/>
 
     </RelativeLayout>
 

@@ -3,6 +3,8 @@ package com.fernandoj.bandasolapp.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.joda.time.DateTime;
+
 /**
  * Created by FernandoJ on 23/03/2017.
  */
@@ -20,9 +22,9 @@ public class Noticias {
     private String cuerpo;
     @SerializedName("fecha")
     @Expose
-    private String fecha;
+    private DateTime fecha;
 
-    public Noticias(String idNoticia, String titulo, String cuerpo, String fecha) {
+    public Noticias(String idNoticia, String titulo, String cuerpo, DateTime fecha) {
         this.idNoticia = idNoticia;
         this.titulo = titulo;
         this.cuerpo = cuerpo;
@@ -56,11 +58,11 @@ public class Noticias {
         this.cuerpo = cuerpo;
     }
 
-    public String getFecha() {
+    public DateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(DateTime fecha) {
         this.fecha = fecha;
     }
 

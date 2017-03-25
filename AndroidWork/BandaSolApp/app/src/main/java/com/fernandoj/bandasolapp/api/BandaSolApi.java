@@ -13,9 +13,9 @@ import retrofit.http.GET;
 
 public interface BandaSolApi {
 
-    String ENDPOINT = "http://10.0.2.2/";
+    String ENDPOINT = "http://10.0.2.2/bandasolapp/api/v0/";
 
-    @GET("bandasolapp/api/v0/noticias/lista_noticias")
+    @GET("noticias/lista_noticias")
     Call<List<Noticias>> getNoticias();
 
 

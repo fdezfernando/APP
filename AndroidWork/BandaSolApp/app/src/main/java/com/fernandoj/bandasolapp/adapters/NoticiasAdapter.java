@@ -9,6 +9,10 @@ import android.widget.TextView;
 import com.fernandoj.bandasolapp.R;
 import com.fernandoj.bandasolapp.pojos.Noticias;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 
@@ -32,9 +36,14 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
+        String fechaNoticia = fmt.print(holder.mItem.getFecha());
+
+
         holder.textViewTitulo.setText(holder.mItem.getTitulo());
         holder.textViewCuerpo.setText(holder.mItem.getCuerpo());
-        holder.textViewFecha.setText(holder.mItem.getFecha());
+        holder.textViewFecha.setText(fechaNoticia);
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

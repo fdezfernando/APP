@@ -16,7 +16,22 @@ import com.fernandoj.bandasolapp.adapters.NoticiasAdapter;
 import com.fernandoj.bandasolapp.adapters.OnListFragmentNoticias;
 import com.fernandoj.bandasolapp.api.BandaSolApi;
 import com.fernandoj.bandasolapp.pojos.Noticias;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
+import org.joda.time.DateTime;
+
+import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
 
 import retrofit.Call;
@@ -59,9 +74,16 @@ public class FragmentNoticias extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
+            JodaTimeAndroid.init(getActivity());
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
+                    .create();
+
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BandaSolApi.ENDPOINT)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
 
             BandaSolApi servicio = retrofit.create(BandaSolApi.class);
@@ -99,6 +121,26 @@ public class FragmentNoticias extends Fragment {
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
+        }
+    }
+
+    private static class DateTimeTypeConverter
+            implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
+        @Override
+        public JsonElement serialize(DateTime src, Type srcType, JsonSerializationContext context) {
+            return new JsonPrimitive(src.toString());
+        }
+
+        @Override
+        public DateTime deserialize(JsonElement json, Type type, JsonDeserializationContext context)
+                throws JsonParseException {
+            try {
+                return new DateTime(json.getAsString());
+            } catch (IllegalArgumentException e) {
+                // May be it came in formatted as a java.util.Date, so try that
+                Date date = context.deserialize(json, Date.class);
+                return new DateTime(date);
+            }
         }
     }
 

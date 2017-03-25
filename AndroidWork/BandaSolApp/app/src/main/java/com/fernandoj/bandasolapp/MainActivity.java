@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -90,10 +91,12 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_noticias:
-                f = new FragmentNoticias();
+               f = new FragmentNoticias();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.container, f)
+                        .detach(f)      // detach y attach nos permite refrescar el fragment
+                        .attach(f)      // por si hay algún cambio en el servidor.
                         .commit();
                 break;
             case R.id.nav_componentes:
