@@ -11,9 +11,6 @@ import org.joda.time.DateTime;
 
 public class Noticias {
 
-    @SerializedName("idNoticia")
-    @Expose
-    private String idNoticia;
     @SerializedName("titulo")
     @Expose
     private String titulo;
@@ -24,8 +21,7 @@ public class Noticias {
     @Expose
     private DateTime fecha;
 
-    public Noticias(String idNoticia, String titulo, String cuerpo, DateTime fecha) {
-        this.idNoticia = idNoticia;
+    public Noticias(String titulo, String cuerpo, DateTime fecha) {
         this.titulo = titulo;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
@@ -34,13 +30,6 @@ public class Noticias {
     public Noticias() {
     }
 
-    public String getIdNoticia() {
-        return idNoticia;
-    }
-
-    public void setIdNoticia(String idNoticia) {
-        this.idNoticia = idNoticia;
-    }
 
     public String getTitulo() {
         return titulo;
@@ -69,7 +58,6 @@ public class Noticias {
     @Override
     public String toString() {
         return "Noticias{" +
-                "idNoticia='" + idNoticia + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", cuerpo='" + cuerpo + '\'' +
                 ", fecha='" + fecha + '\'' +

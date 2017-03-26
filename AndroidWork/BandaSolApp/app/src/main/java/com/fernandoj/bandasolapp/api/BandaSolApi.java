@@ -1,5 +1,6 @@
 package com.fernandoj.bandasolapp.api;
 
+import com.fernandoj.bandasolapp.pojos.Componentes;
 import com.fernandoj.bandasolapp.pojos.Noticias;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public interface BandaSolApi {
 
     @GET("noticias/lista_noticias")
     Call<List<Noticias>> getNoticias();
+
+    @GET("componentes/lista_componentes")
+    Call<List<Componentes>> getComponentes();
 
 
 }

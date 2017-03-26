@@ -1,4 +1,4 @@
-package com.fernandoj.bandasolapp.adapters;
+package com.fernandoj.bandasolapp.interfaces;
 
 import com.fernandoj.bandasolapp.pojos.Noticias;
 

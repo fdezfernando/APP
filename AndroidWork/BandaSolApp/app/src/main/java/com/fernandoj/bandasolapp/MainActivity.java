@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,19 +14,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.fernandoj.bandasolapp.adapters.OnListFragmentNoticias;
+import com.fernandoj.bandasolapp.fragments.FragmentComponentes;
+import com.fernandoj.bandasolapp.interfaces.OnListFragmentComponentes;
+import com.fernandoj.bandasolapp.interfaces.OnListFragmentNoticias;
 import com.fernandoj.bandasolapp.fragments.FragmentNoticias;
+import com.fernandoj.bandasolapp.pojos.Componentes;
 import com.fernandoj.bandasolapp.pojos.Noticias;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnListFragmentNoticias {
+        implements NavigationView.OnNavigationItemSelectedListener, OnListFragmentNoticias, OnListFragmentComponentes {
 
     Fragment f;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null) {
+            //getSupportFragmentManager().beginTransaction().replace(R.id.container, new FragmentNoticias()).commit();
+            //onNavigationItemSelected(navigationView.getMenu().getItem(R.id.nav_noticias));
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -100,6 +109,13 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 break;
             case R.id.nav_componentes:
+                f = new FragmentComponentes();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, f)
+                        .detach(f)
+                        .attach(f)
+                        .commit();
                 break;
             case R.id.nav_eventos:
                 break;
@@ -131,6 +147,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClickNoticias(Noticias noticias) {
+
+    }
+
+    @Override
+    public void onClickComponente(Componentes componente) {
 
     }
 }

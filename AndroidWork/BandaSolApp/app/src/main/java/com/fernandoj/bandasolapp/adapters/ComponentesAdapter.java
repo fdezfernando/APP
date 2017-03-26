@@ -7,21 +7,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fernandoj.bandasolapp.R;
-import com.fernandoj.bandasolapp.interfaces.OnListFragmentNoticias;
-import com.fernandoj.bandasolapp.pojos.Noticias;
-
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import com.fernandoj.bandasolapp.interfaces.OnListFragmentComponentes;
+import com.fernandoj.bandasolapp.pojos.Componentes;
 
 import java.util.List;
 
 
-public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHolder> {
+public class ComponentesAdapter extends RecyclerView.Adapter<ComponentesAdapter.ViewHolder> {
 
-    private final List<Noticias> mValues;
-    private final OnListFragmentNoticias mListener;
+    private final List<Componentes> mValues;
+    private final OnListFragmentComponentes mListener;
 
-    public NoticiasAdapter(List<Noticias> items, OnListFragmentNoticias listener) {
+    public ComponentesAdapter(List<Componentes> items, OnListFragmentComponentes listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +26,7 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_noticias_item, parent, false);
+                .inflate(R.layout.fragment_componentes_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -37,13 +34,9 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
-        String fechaNoticia = fmt.print(holder.mItem.getFecha());
-
-
-        holder.textViewTitulo.setText(holder.mItem.getTitulo());
-        holder.textViewCuerpo.setText(holder.mItem.getCuerpo());
-        holder.textViewFecha.setText(fechaNoticia);
+        holder.textViewNombreApellidos.setText(holder.mItem.getNombre() + " " + holder.mItem.getApellidos());
+        holder.textViewMote.setText(holder.mItem.getMote());
+        holder.textViewMovil.setText(holder.mItem.getMovil());
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +45,7 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                   // mListener.onClickNoticias(holder.mItem);
+                    // mListener.onClickComponente(holder.mItem);
                 }
             }
         });
@@ -65,17 +58,18 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView textViewTitulo;
-        public final TextView textViewCuerpo;
-        public final TextView textViewFecha;
-        public Noticias mItem;
+        public final TextView textViewNombreApellidos;
+        public final TextView textViewMote;
+        public final TextView textViewMovil;
+
+        public Componentes mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            textViewTitulo = (TextView) view.findViewById(R.id.text_view_titulo);
-            textViewCuerpo = (TextView) view.findViewById(R.id.text_view_cuerpo);
-            textViewFecha = (TextView) view.findViewById(R.id.text_view_fecha);
+            textViewNombreApellidos = (TextView) view.findViewById(R.id.text_view_nombre_apellidos);
+            textViewMote = (TextView) view.findViewById(R.id.text_view_mote);
+            textViewMovil = (TextView) view.findViewById(R.id.text_view_movil);
         }
 
         @Override
