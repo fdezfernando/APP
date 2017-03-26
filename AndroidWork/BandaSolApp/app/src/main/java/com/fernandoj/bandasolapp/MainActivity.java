@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fernandoj.bandasolapp.fragments.FragmentComponentes;
+import com.fernandoj.bandasolapp.fragments.FragmentEventos;
 import com.fernandoj.bandasolapp.interfaces.OnListFragmentComponentes;
 import com.fernandoj.bandasolapp.interfaces.OnListFragmentNoticias;
 import com.fernandoj.bandasolapp.fragments.FragmentNoticias;
@@ -100,49 +101,44 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_noticias:
-               f = new FragmentNoticias();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.container, f)
-                        .detach(f)      // detach y attach nos permite refrescar el fragment
-                        .attach(f)      // por si hay algún cambio en el servidor.
-                        .commit();
+                f = new FragmentNoticias();
+                addFragment(f); //Llamámos al método que agrega el fragment dinámicamente
                 break;
             case R.id.nav_componentes:
                 f = new FragmentComponentes();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.container, f)
-                        .detach(f)
-                        .attach(f)
-                        .commit();
+                replaceFragment(f); //Llamámos al método que reemplaza el fragment dinámicamente
                 break;
             case R.id.nav_eventos:
-                break;
-            case R.id.nav_instrumentos:
+                f = new FragmentEventos();
+                replaceFragment(f);
                 break;
             case R.id.nav_marchas:
                 break;
         }
 
-        /*if (id == R.id.nav_) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /* Método que agrega un fragment*/
+    public void addFragment(Fragment f) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, f)
+                .detach(f)      // detach y attach nos permite refrescar el fragment
+                .attach(f)      // por si hay algún cambio en el servidor.
+                .commit();
+    }
+
+    /* Método que reemplaza un fragment*/
+    public void replaceFragment(Fragment f) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, f)
+                .detach(f)
+                .attach(f)
+                .commit();
     }
 
     @Override

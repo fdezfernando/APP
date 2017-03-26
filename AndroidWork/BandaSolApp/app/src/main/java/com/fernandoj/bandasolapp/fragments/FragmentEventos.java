@@ -13,10 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.fernandoj.bandasolapp.R;
-import com.fernandoj.bandasolapp.adapters.NoticiasAdapter;
+import com.fernandoj.bandasolapp.adapters.EventosAdapter;
 import com.fernandoj.bandasolapp.api.BandaSolApi;
-import com.fernandoj.bandasolapp.interfaces.OnListFragmentNoticias;
-import com.fernandoj.bandasolapp.pojos.Noticias;
+import com.fernandoj.bandasolapp.pojos.Eventos;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -42,27 +41,28 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 
-public class FragmentNoticias extends Fragment {
+public class FragmentEventos extends Fragment {
+
 
     private int mColumnCount = 1;
     RecyclerView recyclerView;
-    private OnListFragmentNoticias mListener;
+
+    //private OnListFragmentInteractionListener mListener;
 
 
-    public FragmentNoticias() {
+    public FragmentEventos() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_noticias_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_eventos_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -74,12 +74,12 @@ public class FragmentNoticias extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
+
             JodaTimeAndroid.init(getActivity());
 
             Gson gson = new GsonBuilder()
                     .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
                     .create();
-
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BandaSolApi.ENDPOINT)
@@ -89,16 +89,17 @@ public class FragmentNoticias extends Fragment {
             BandaSolApi servicio = retrofit.create(BandaSolApi.class);
 
 
-            Call<List<Noticias>> call = servicio.getNoticias();
+            Call<List<Eventos>> call = servicio.getEventos();
 
-            call.enqueue(new Callback<List<Noticias>>() {
+            call.enqueue(new Callback<List<Eventos>>() {
                 @Override
-                public void onResponse(Response<List<Noticias>> response, Retrofit retrofit) {
+                public void onResponse(Response<List<Eventos>> response, Retrofit retrofit) {
                     if (response.isSuccess()) {
-                        List listNoticias = response.body();
-                        recyclerView.setAdapter(new NoticiasAdapter(listNoticias, mListener));
+                        List listEventos = response.body();
+                        recyclerView.setAdapter(new EventosAdapter(listEventos));
                     } else {
                         Log.e("RESP ERROR", "code: " + response.code() + " " + response.message());
+
                     }
                 }
 
@@ -108,21 +109,22 @@ public class FragmentNoticias extends Fragment {
                 }
             });
 
+
         }
         return view;
     }
 
 
-    @Override
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentNoticias) {
-            mListener = (OnListFragmentNoticias) context;
+        if (context instanceof Onl) {
+            mListener = (OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
-    }
+    }*/
 
     private static class DateTimeTypeConverter
             implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {

@@ -1,6 +1,7 @@
 package com.fernandoj.bandasolapp.api;
 
 import com.fernandoj.bandasolapp.pojos.Componentes;
+import com.fernandoj.bandasolapp.pojos.Eventos;
 import com.fernandoj.bandasolapp.pojos.Noticias;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public interface BandaSolApi {
 
     @GET("componentes/lista_componentes")
     Call<List<Componentes>> getComponentes();
+
+    @GET("eventos/lista_eventos")
+    Call<List<Eventos>> getEventos();
+
+   
 
 
 }
