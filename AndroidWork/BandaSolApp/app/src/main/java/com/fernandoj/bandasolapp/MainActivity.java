@@ -13,9 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.fernandoj.bandasolapp.fragments.FragmentComponentes;
 import com.fernandoj.bandasolapp.fragments.FragmentEventos;
+import com.fernandoj.bandasolapp.fragments.FragmentMarchas;
 import com.fernandoj.bandasolapp.interfaces.OnListFragmentComponentes;
 import com.fernandoj.bandasolapp.interfaces.OnListFragmentNoticias;
 import com.fernandoj.bandasolapp.fragments.FragmentNoticias;
@@ -113,6 +115,8 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(f);
                 break;
             case R.id.nav_marchas:
+                f = new FragmentMarchas();
+                replaceFragment(f);
                 break;
         }
 
@@ -143,6 +147,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClickNoticias(Noticias noticias) {
+
 
     }
 

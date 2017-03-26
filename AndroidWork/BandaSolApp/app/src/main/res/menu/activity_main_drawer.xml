@@ -15,10 +15,6 @@
             android:icon="@drawable/ic_eventos"
             android:title="@string/eventos" />
         <item
-            android:id="@+id/nav_instrumentos"
-            android:icon="@drawable/ic_instrumentos"
-            android:title="@string/instrumentos" />
-        <item
             android:id="@+id/nav_marchas"
             android:icon="@drawable/ic_marchas"
             android:title="@string/marchas" />

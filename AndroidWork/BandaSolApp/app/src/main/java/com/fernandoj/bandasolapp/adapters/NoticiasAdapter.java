@@ -52,7 +52,7 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                   // mListener.onClickNoticias(holder.mItem);
+                    mListener.onClickNoticias(holder.mItem);
                 }
             }
         });
