@@ -1,11 +1,11 @@
 package com.fernandoj.bandasolapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,16 +13,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
+import com.fernandoj.bandasolapp.constantes.ConstantesNoticia;
+import com.fernandoj.bandasolapp.details.ScrollingActivityNoticia;
 import com.fernandoj.bandasolapp.fragments.FragmentComponentes;
 import com.fernandoj.bandasolapp.fragments.FragmentEventos;
 import com.fernandoj.bandasolapp.fragments.FragmentMarchas;
+import com.fernandoj.bandasolapp.fragments.FragmentNoticias;
 import com.fernandoj.bandasolapp.interfaces.OnListFragmentComponentes;
 import com.fernandoj.bandasolapp.interfaces.OnListFragmentNoticias;
-import com.fernandoj.bandasolapp.fragments.FragmentNoticias;
 import com.fernandoj.bandasolapp.pojos.Componentes;
 import com.fernandoj.bandasolapp.pojos.Noticias;
+
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnListFragmentNoticias, OnListFragmentComponentes {
@@ -148,11 +153,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClickNoticias(Noticias noticias) {
 
+        Bundle extras = new Bundle();
+        extras.putString(ConstantesNoticia.EXTRA_TITULO, noticias.getTitulo());
+        extras.putString(ConstantesNoticia.EXTRA_CUERPO, noticias.getCuerpo());
 
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
+        String fechaNoticia = fmt.print(noticias.getFecha());
+
+        extras.putString(ConstantesNoticia.EXTRA_FECHA_NOTICIA, fechaNoticia);
+
+        Intent intent = new Intent(MainActivity.this, ScrollingActivityNoticia.class);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     @Override
     public void onClickComponente(Componentes componente) {
 
     }
+
+
 }
