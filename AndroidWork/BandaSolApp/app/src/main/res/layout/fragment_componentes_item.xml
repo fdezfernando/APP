@@ -32,6 +32,7 @@
             android:maxLines="1"
             android:text="Fernando Jesús Fernández Arroyo"
             android:textSize="18dp"
+            android:textColor="@android:color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -41,6 +42,7 @@
             android:layout_below="@id/text_view_nombre_apellidos"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/image_view_avatar"
+            android:textColor="@android:color/black"
             android:text="Fendy" />
 
         <TextView
@@ -50,6 +52,7 @@
             android:layout_below="@id/text_view_mote"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/image_view_avatar"
+            android:textColor="@android:color/black"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="651492266" />

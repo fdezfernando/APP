@@ -1,4 +1,4 @@
-package com.fernandoj.bandasolapp;
+package com.fernandoj.bandasolapp.activitis;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.fernandoj.bandasolapp.R;
 import com.fernandoj.bandasolapp.constantes.ConstantesNoticia;
 import com.fernandoj.bandasolapp.details.ScrollingActivityNoticia;
 import com.fernandoj.bandasolapp.fragments.FragmentComponentes;

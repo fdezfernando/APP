@@ -2,13 +2,18 @@ package com.fernandoj.bandasolapp.api;
 
 import com.fernandoj.bandasolapp.pojos.Componentes;
 import com.fernandoj.bandasolapp.pojos.Eventos;
+import com.fernandoj.bandasolapp.pojos.LoginResponse;
 import com.fernandoj.bandasolapp.pojos.Marchas;
 import com.fernandoj.bandasolapp.pojos.Noticias;
 
 import java.util.List;
 
 import retrofit.Call;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.POST;
+
 
 /**
  * Created by FernandoJ on 23/03/2017.
@@ -30,7 +35,10 @@ public interface BandaSolApi {
     @GET("marchas/lista_marchas")
     Call<List<Marchas>> getMarchas();
 
-
+    @FormUrlEncoded
+    @POST("usuarios/login")
+    Call<LoginResponse> getLogin(@Field("e") String u,
+                                 @Field("p") String p);
 
 
 }

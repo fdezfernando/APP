@@ -18,6 +18,7 @@ import java.util.List;
 public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHolder> {
 
     private final List<Eventos> mValues;
+    private String fechaEvento;
 
 
     public EventosAdapter(List<Eventos> items) {
@@ -35,13 +36,9 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy HH:mm");
-        String fechaEvento = fmt.print(holder.mItem.getFecha());
-
         holder.textViewNombreEvento.setText(holder.mItem.getNombreEvento());
         holder.textViewLugar.setText(holder.mItem.getLugar());
-        holder.textViewFecha.setText(fechaEvento);
+        holder.textViewFecha.setText(holder.mItem.getFecha());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

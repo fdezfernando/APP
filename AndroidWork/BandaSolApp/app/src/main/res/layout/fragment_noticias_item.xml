@@ -23,6 +23,7 @@
             android:maxLines="1"
             android:text="La banda del sol"
             android:textColor="@android:color/black"
+
             android:textSize="20sp" />
 
         <TextView

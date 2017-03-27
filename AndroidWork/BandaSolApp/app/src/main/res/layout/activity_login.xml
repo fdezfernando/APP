@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#010135"
-    tools:context="com.fernandoj.bandasolapp.LoginActivity">
+    tools:context="com.fernandoj.bandasolapp.activitis.LoginActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -33,6 +33,7 @@
             android:backgroundTint="#c2c2c2"
             android:hint="Usuario"
             android:textColor="#f2f2f2"
+            android:inputType="textEmailAddress"
             android:textColorHint="#c2c2c2" />
 
         <EditText
@@ -44,6 +45,7 @@
             android:backgroundTint="#c2c2c2"
             android:hint="Contraseña"
             android:textColor="#f2f2f2"
+            android:inputType="textPassword"
             android:textColorHint="#c2c2c2"/>
 
         <Button

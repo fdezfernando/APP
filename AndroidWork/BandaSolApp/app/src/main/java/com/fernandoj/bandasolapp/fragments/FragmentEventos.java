@@ -105,7 +105,7 @@ public class FragmentEventos extends Fragment {
 
                 @Override
                 public void onFailure(Throwable t) {
-                    Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error: " + t.getMessage() + t.getCause(), Toast.LENGTH_SHORT).show();
                 }
             });
 

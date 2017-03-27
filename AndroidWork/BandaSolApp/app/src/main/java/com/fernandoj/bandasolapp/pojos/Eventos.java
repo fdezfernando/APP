@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.Date;
 
 /**
  * Created by FernandoJ on 26/03/2017.
@@ -13,7 +17,7 @@ public class Eventos {
 
     @SerializedName("fecha")
     @Expose
-    private DateTime fecha;
+    private String fecha;
     @SerializedName("lugar")
     @Expose
     private String lugar;
@@ -21,7 +25,7 @@ public class Eventos {
     @Expose
     private String nombreEvento;
 
-    public Eventos(DateTime fecha, String lugar, String nombreEvento) {
+    public Eventos(String fecha, String lugar, String nombreEvento) {
 
         this.fecha = fecha;
         this.lugar = lugar;
@@ -32,11 +36,11 @@ public class Eventos {
     }
 
 
-    public DateTime getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(DateTime fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
