@@ -41,7 +41,9 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-
+/**
+ * Fragment Componentes
+ */
 public class FragmentComponentes extends Fragment {
 
 
@@ -49,10 +51,16 @@ public class FragmentComponentes extends Fragment {
     private OnListFragmentComponentes mListener;
     RecyclerView recyclerView;
 
-
+    /**
+     * Constructor vacío
+     */
     public FragmentComponentes() {
     }
 
+    /**
+     * Método que crea una instancia del fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +68,14 @@ public class FragmentComponentes extends Fragment {
 
     }
 
+    /**
+     * Método que crea la vista del fragment.
+     * Cargamos Retrofit y se lo pasamos al recycler.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

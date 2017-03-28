@@ -1,10 +1,16 @@
 package com.fernandoj.bandasolapp.activitis;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +20,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fernandoj.bandasolapp.R;
 import com.fernandoj.bandasolapp.constantes.ConstantesNoticia;
@@ -30,33 +38,24 @@ import com.fernandoj.bandasolapp.pojos.Noticias;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+/**
+ * Activity principal con NavigationDrawer
+ */
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnListFragmentNoticias, OnListFragmentComponentes {
 
     Fragment f;
     NavigationView navigationView;
+    TextView textViewUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            //getSupportFragmentManager().beginTransaction().replace(R.id.container, new FragmentNoticias()).commit();
-            //onNavigationItemSelected(navigationView.getMenu().getItem(R.id.nav_noticias));
-        }
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -64,11 +63,33 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        /* Instanciamos y recatamos el menú lateral*/
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
 
+        /* Rescatamos el parámetro del usuario*/
+        textViewUsuario = (TextView) header.findViewById(R.id.text_view_navigation_user);
+
+        /* Cargamos las preferencias con el nombre de usuario*/
+        SharedPreferences prefs =
+                getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+
+        String usuario = prefs.getString("user", "Usuario");
+
+        /* Seteamos el texto del menú lateral con el nombre de nuestro usuario*/
+        textViewUsuario.setText(usuario);
+
+        /* Cargamos una vista por defecto del menú*/
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        /* Nos permite que se chequee el botón del menú lateral*/
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
+    /**
+     * Método que maneja el botón de ir hacia atrás
+     * para nuestro menú lateral
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,28 +100,48 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Método que crear el menú de opciones.
+     * Infla el menú.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+    /**
+     * Método que rescata el item de nuestro menú de la derecha.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_logout:
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                break;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Método que rescata el item en el que hacemos click
+     * y carga el fragment dinámicamente.
+     *
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -111,18 +152,22 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_noticias:
                 f = new FragmentNoticias();
                 addFragment(f); //Llamámos al método que agrega el fragment dinámicamente
+                setTitle(item.getTitle());
                 break;
             case R.id.nav_componentes:
                 f = new FragmentComponentes();
                 replaceFragment(f); //Llamámos al método que reemplaza el fragment dinámicamente
+                setTitle(item.getTitle());
                 break;
             case R.id.nav_eventos:
                 f = new FragmentEventos();
                 replaceFragment(f);
+                setTitle(item.getTitle());
                 break;
             case R.id.nav_marchas:
                 f = new FragmentMarchas();
                 replaceFragment(f);
+                setTitle(item.getTitle());
                 break;
         }
 
@@ -131,7 +176,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    /* Método que agrega un fragment*/
+    /**
+     * Método que agrega un fragment.
+     *
+     * @param f
+     */
     public void addFragment(Fragment f) {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -141,7 +190,11 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    /* Método que reemplaza un fragment*/
+    /**
+     * Método que reemplaza un fragment.
+     *
+     * @param f
+     */
     public void replaceFragment(Fragment f) {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -151,6 +204,13 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
+    /**
+     * Método que de la interfaz OnListFragmentNoticias.
+     * Recoge el objeto que se le ha hecho click con
+     * un bundle y lo pasamos al acttivity ScrollingActivity
+     *
+     * @param noticias
+     */
     @Override
     public void onClickNoticias(Noticias noticias) {
 
@@ -170,6 +230,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClickComponente(Componentes componente) {
+
+
+        String call = componente.getMovil();
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + call));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(intent);
 
     }
 

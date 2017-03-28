@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.fernandoj.bandasolapp.adapters.MarchasAdapter;
 import com.fernandoj.bandasolapp.R;
+import com.fernandoj.bandasolapp.adapters.MarchasAdapter;
 import com.fernandoj.bandasolapp.api.BandaSolApi;
 import com.fernandoj.bandasolapp.pojos.Marchas;
 
@@ -71,7 +71,7 @@ public class FragmentMarchas extends Fragment {
             call.enqueue(new Callback<List<Marchas>>() {
                 @Override
                 public void onResponse(Response<List<Marchas>> response, Retrofit retrofit) {
-                    if(response.isSuccess()){
+                    if (response.isSuccess()) {
                         List listMarchas = response.body();
                         recyclerView.setAdapter(new MarchasAdapter(listMarchas));
                     } else {
@@ -84,7 +84,6 @@ public class FragmentMarchas extends Fragment {
                     Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-
 
 
         }

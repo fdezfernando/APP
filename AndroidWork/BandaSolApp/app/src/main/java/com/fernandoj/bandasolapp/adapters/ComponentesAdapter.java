@@ -12,17 +12,32 @@ import com.fernandoj.bandasolapp.pojos.Componentes;
 
 import java.util.List;
 
-
+/**
+ * Adapatador del Fragment Componentes.
+ */
 public class ComponentesAdapter extends RecyclerView.Adapter<ComponentesAdapter.ViewHolder> {
 
     private final List<Componentes> mValues;
     private final OnListFragmentComponentes mListener;
 
+    /**
+     * Constructor
+     *
+     * @param items
+     * @param listener
+     */
     public ComponentesAdapter(List<Componentes> items, OnListFragmentComponentes listener) {
         mValues = items;
         mListener = listener;
     }
 
+    /**
+     * Método que crea el adaptador.
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -30,6 +45,13 @@ public class ComponentesAdapter extends RecyclerView.Adapter<ComponentesAdapter.
         return new ViewHolder(view);
     }
 
+    /**
+     * Método que nos permite pasarle los parámetros al fragment para que
+     * éste los pinte.
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -45,12 +67,17 @@ public class ComponentesAdapter extends RecyclerView.Adapter<ComponentesAdapter.
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    // mListener.onClickComponente(holder.mItem);
+                    mListener.onClickComponente(holder.mItem);
                 }
             }
         });
     }
 
+    /**
+     * Método que nos recoge todos los parámetros del objeto componentes.
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mValues.size();

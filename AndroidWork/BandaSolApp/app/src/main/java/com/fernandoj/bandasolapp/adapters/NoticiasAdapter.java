@@ -15,17 +15,33 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.List;
 
-
+/**
+ * Adapatador del Fragment Marchas.
+ */
 public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHolder> {
 
     private final List<Noticias> mValues;
     private final OnListFragmentNoticias mListener;
 
+
+    /**
+     * Constructor
+     *
+     * @param items
+     * @param listener
+     */
     public NoticiasAdapter(List<Noticias> items, OnListFragmentNoticias listener) {
         mValues = items;
         mListener = listener;
     }
 
+    /**
+     * Método que crea el adaptador.
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -33,6 +49,13 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    /**
+     * Método que nos permite pasarle los parámetros al fragment para que
+     * éste los pinte.
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -46,6 +69,10 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
         holder.textViewFecha.setText(fechaNoticia);
 
 
+        /**
+         * Función anónima que gestiona el evento click en
+         * el objeto que hayamos hecho click de la lista.
+         */
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +85,11 @@ public class NoticiasAdapter extends RecyclerView.Adapter<NoticiasAdapter.ViewHo
         });
     }
 
+    /**
+     * Método que nos recoge todos los parámetros del objeto marchas.
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mValues.size();

@@ -9,23 +9,31 @@ import android.widget.TextView;
 import com.fernandoj.bandasolapp.R;
 import com.fernandoj.bandasolapp.pojos.Eventos;
 
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import java.util.List;
 
-
+/**
+ * Adapatador del Fragment Eventos.
+ */
 public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHolder> {
 
     private final List<Eventos> mValues;
-    private String fechaEvento;
 
-
+    /**
+     * Constructor
+     * @param items
+     */
     public EventosAdapter(List<Eventos> items) {
         mValues = items;
 
     }
 
+    /**
+     * Método que crea el adaptador.
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -33,6 +41,13 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    /**
+     * Método que nos permite pasarle los parámetros al fragment para que
+     * éste los pinte.
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -52,6 +67,11 @@ public class EventosAdapter extends RecyclerView.Adapter<EventosAdapter.ViewHold
         });
     }
 
+    /**
+     * Método que nos recoge todos los parámetros del objeto eventos.
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mValues.size();

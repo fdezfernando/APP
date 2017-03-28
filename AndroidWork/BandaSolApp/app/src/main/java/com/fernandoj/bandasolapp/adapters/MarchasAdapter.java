@@ -11,15 +11,29 @@ import com.fernandoj.bandasolapp.pojos.Marchas;
 
 import java.util.List;
 
+/**
+ * Adapatador del Fragment Marchas.
+ */
 public class MarchasAdapter extends RecyclerView.Adapter<MarchasAdapter.ViewHolder> {
 
     private final List<Marchas> mValues;
 
-
+    /**
+     * Constructor
+     *
+     * @param items
+     */
     public MarchasAdapter(List<Marchas> items) {
         mValues = items;
     }
 
+    /**
+     * Método que crea el adaptador.
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -27,6 +41,13 @@ public class MarchasAdapter extends RecyclerView.Adapter<MarchasAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    /**
+     * Método que nos permite pasarle los parámetros al fragment para que
+     * éste los pinte.
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -47,6 +68,11 @@ public class MarchasAdapter extends RecyclerView.Adapter<MarchasAdapter.ViewHold
         });
     }
 
+    /**
+     * Método que nos recoge todos los parámetros del objeto marchas.
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mValues.size();
