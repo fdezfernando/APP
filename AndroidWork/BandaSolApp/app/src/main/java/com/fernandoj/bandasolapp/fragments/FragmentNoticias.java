@@ -41,7 +41,9 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-
+/***
+ * Fragment Noticias
+ */
 public class FragmentNoticias extends Fragment {
 
     private int mColumnCount = 1;
@@ -49,9 +51,16 @@ public class FragmentNoticias extends Fragment {
     private OnListFragmentNoticias mListener;
 
 
+    /***
+     * Constructor vacío
+     */
     public FragmentNoticias() {
     }
 
+    /***
+     * Método que crea una instancia del fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +68,14 @@ public class FragmentNoticias extends Fragment {
 
     }
 
+    /***
+     * * Método que crea la vista del fragment.
+     * Cargamos Retrofit y se lo pasamos al recycler.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -124,6 +141,9 @@ public class FragmentNoticias extends Fragment {
         }
     }
 
+    /***
+     * Clase privada que implementa la librería JodaTime.
+     */
     private static class DateTimeTypeConverter
             implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
         @Override

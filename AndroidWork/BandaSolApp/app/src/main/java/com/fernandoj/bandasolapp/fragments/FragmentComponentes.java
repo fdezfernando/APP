@@ -139,7 +139,9 @@ public class FragmentComponentes extends Fragment {
         }
     }
 
-
+    /***
+     * Clase privada que implementa la librería JodaTime.
+     */
     private static class DateTimeTypeConverter
             implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
         @Override

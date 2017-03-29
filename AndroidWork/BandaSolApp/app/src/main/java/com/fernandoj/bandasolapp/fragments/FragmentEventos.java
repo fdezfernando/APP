@@ -40,25 +40,40 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-
+/***
+ * Fragment Eventos
+ */
 public class FragmentEventos extends Fragment {
 
 
     private int mColumnCount = 1;
     RecyclerView recyclerView;
 
-    //private OnListFragmentInteractionListener mListener;
 
-
+    /***
+     * Constructor vacío
+     */
     public FragmentEventos() {
     }
 
+    /***
+     * Método que crea una instancia del fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /***
+     * * Método que crea la vista del fragment.
+     * Cargamos Retrofit y se lo pasamos al recycler.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -115,17 +130,9 @@ public class FragmentEventos extends Fragment {
     }
 
 
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof Onl) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }*/
-
+    /***
+     * Clase privada que implementa la librería JodaTime.
+     */
     private static class DateTimeTypeConverter
             implements JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
         @Override
