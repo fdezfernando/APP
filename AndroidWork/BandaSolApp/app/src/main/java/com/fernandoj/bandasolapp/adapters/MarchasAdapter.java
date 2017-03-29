@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fernandoj.bandasolapp.R;
+import com.fernandoj.bandasolapp.constantes.ConstantesMusica;
 import com.fernandoj.bandasolapp.pojos.Marchas;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class MarchasAdapter extends RecyclerView.Adapter<MarchasAdapter.ViewHold
         holder.mItem = mValues.get(position);
 
         holder.textViewNombreMarcha.setText(holder.mItem.getNombreMarcha());
-        holder.textViewAutor.setText(holder.mItem.getAutor());
+        holder.textViewAutor.setText(ConstantesMusica.AUTOR +": "+  holder.mItem.getAutor());
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

@@ -7,9 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -21,10 +19,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fernandoj.bandasolapp.R;
 import com.fernandoj.bandasolapp.constantes.ConstantesNoticia;
+import com.fernandoj.bandasolapp.constantes.ConstantesUsuario;
 import com.fernandoj.bandasolapp.details.ScrollingActivityNoticia;
 import com.fernandoj.bandasolapp.fragments.FragmentComponentes;
 import com.fernandoj.bandasolapp.fragments.FragmentEventos;
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences prefs =
                 getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
-        String usuario = prefs.getString("user", "Usuario");
+        String usuario = prefs.getString(ConstantesUsuario.USUARIO, "Usuario");
 
         /* Seteamos el texto del menú lateral con el nombre de nuestro usuario*/
         textViewUsuario.setText(usuario);

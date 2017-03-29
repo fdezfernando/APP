@@ -21,29 +21,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Así suena la nueva marcha de la banda del sol"
-            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:textSize="20dp"
-            android:textColor="@android:color/black"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_view_cuerpoDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Texto"
             android:layout_below="@id/text_view_tituloDetalle"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:textColor="@android:color/black"/>
+            android:text="Texto"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/text_view_fechaDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="26/03/2017"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/text_view_cuerpoDetalle"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_alignParentEnd="true"
-            android:textColor="@android:color/black"/>
-
+            android:text="26/03/2017"
+            android:textColor="@android:color/black" />
 
 
     </RelativeLayout>

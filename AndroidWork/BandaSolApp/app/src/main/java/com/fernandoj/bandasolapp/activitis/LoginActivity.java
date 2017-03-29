@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.fernandoj.bandasolapp.R;
 import com.fernandoj.bandasolapp.api.BandaSolApi;
+import com.fernandoj.bandasolapp.constantes.ConstantesUsuario;
 import com.fernandoj.bandasolapp.pojos.LoginResponse;
 
 import retrofit.Call;
@@ -70,13 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Response<LoginResponse> response, Retrofit retrofit) {
                         if (response.isSuccess()) {
 
-                            String usuario = response.body().getData().getUsername();
+                            String nombre = response.body().getData().getFirstName();
+                            String apellido = response.body().getData().getLastName();
 
                             SharedPreferences prefs =
                                     getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("user", usuario);
+                            editor.putString(ConstantesUsuario.USUARIO, nombre + " " + apellido);
                             editor.commit();
 
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);

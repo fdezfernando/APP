@@ -26,7 +26,8 @@ public interface BandaSolApi {
     /*
         Url base.
      */
-    String ENDPOINT = "http://10.0.2.2/bandasolapp/api/v0/";
+    //http://10.0.2.2/
+    String ENDPOINT = "http://192.168.1.59/bandasolapp/api/v0/";
 
     /*
     Contiene una lista de Noticias.

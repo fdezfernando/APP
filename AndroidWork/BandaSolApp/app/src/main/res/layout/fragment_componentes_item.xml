@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:src="@drawable/ic_avatar_componente" />
+            android:src="@drawable/ic_man" />
 
         <TextView
             android:id="@+id/text_view_nombre_apellidos"
@@ -31,8 +31,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Fernando Jesús Fernández Arroyo"
-            android:textSize="18dp"
             android:textColor="@android:color/black"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <TextView
@@ -42,8 +42,8 @@
             android:layout_below="@id/text_view_nombre_apellidos"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/image_view_avatar"
-            android:textColor="@android:color/black"
-            android:text="Fendy" />
+            android:text="Fendy"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/text_view_movil"
@@ -52,10 +52,10 @@
             android:layout_below="@id/text_view_mote"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_toRightOf="@id/image_view_avatar"
-            android:textColor="@android:color/black"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="651492266" />
+            android:text="651492266"
+            android:textColor="@android:color/black" />
 
 
     </RelativeLayout>

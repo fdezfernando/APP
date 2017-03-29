@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Concierto en el tiro de linea"
+            android:textColor="@android:color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -37,7 +38,8 @@
             android:layout_below="@id/text_view_nombreEvento"
             android:layout_marginStart="7dp"
             android:layout_toRightOf="@id/image_view_icon_loc"
-            android:text="Avenida almirante topete" />
+            android:text="Avenida almirante topete"
+            android:textColor="@android:color/black" />
 
         <ImageView
             android:id="@+id/image_view_fecha"
@@ -53,7 +55,8 @@
             android:layout_below="@id/text_view_lugar"
             android:layout_marginStart="7dp"
             android:layout_toRightOf="@id/image_view_fecha"
-            android:text="26 de Marzo, 2017 12:45" />
+            android:text="26 de Marzo, 2017 12:45"
+            android:textColor="@android:color/black" />
 
 
     </RelativeLayout>
