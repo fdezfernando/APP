@@ -1,0 +1,12 @@
+App Cliente: Contiene la app android y apk.
+
+Documentación: 
+	- Base de datos: Contiene los archivos de la base de datos.
+	- Java doc de la app android.
+	- Memoria: Documentación del proyecto.
+	- Skeetch: Scketching de la web y de la app.
+	- Video presentación.
+
+Web Administracion: Contiene la web y la api.
+
+GRACIAS!!

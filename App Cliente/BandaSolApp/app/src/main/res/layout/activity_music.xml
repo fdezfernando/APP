@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1e588a"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.fernandoj.bandasolapp.activitis.MusicActivity">
+
+    <co.mobiwise.library.MusicPlayerView
+        android:id="@+id/mpv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/text_view_nombre_cancion"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:buttonColor="#1e588a"
+        app:progressEmptyColor="#3c6d96"
+        app:progressLoadedColor="@color/colorAccent"
+        app:textColor="@android:color/white"
+        app:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/text_view_nombre_cancion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Cancion de prueba"
+        android:textColor="@android:color/white"
+        android:textSize="22dp" />
+
+
+</RelativeLayout>
